@@ -8,17 +8,19 @@ const server = Hapi.server({
     port: 8080
 });
 
-server.route({
-    method: 'GET',
-    path: '/{user?}',
-    handler: function(request, h) {
-
-        //Note that we URI encode the name parameter, 
-        //this is to prevent content injection attacks. 
-        const user = request.params.user ? encodeURIComponent(request.params.name) : 'Stranger';
-        return `Hello ${user}!`; 
-    }
-});
+server.route([
+    {
+        method: 'GET',
+        path: '/api/{user?}',
+        handler: function(request, h) {
+    
+            //Note that we URI encode the name parameter, 
+            //this is to prevent content injection attacks. 
+            const user = request.params.user ? encodeURIComponent(request.params.user) : 'Stranger';
+            return `Hello ${user}!`; 
+        }
+    },
+]);
 
 const init = async () => {
 
