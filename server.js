@@ -2,7 +2,7 @@ const Hapi = require('hapi');
 
 const server = Hapi.server({
     host: 'localhost',
-    port: 3010
+    port: 8080
 });
 
 server.route({
@@ -25,7 +25,7 @@ async function start() {
         process.exit(1);
     }
 
-    console.log('Server running at:', server.info.url);
+    console.log('Server running at:', server.info.uri);
 }
 
 start();
