@@ -1,3 +1,6 @@
+require('dotenv').config();
+require('./lib/mongodb');
+const app = require('./lib/app');
 const Hapi = require('hapi');
 
 const server = Hapi.server({
@@ -10,6 +13,8 @@ server.route({
     path: '/{name}',
     handler: function(request, h) {
 
+        //Note that we URI encode the name parameter, 
+        //this is to prevent content injection attacks. 
         return 'Hello, ' + encodeURIComponent(request.params.name) + '!';
     }
 });
