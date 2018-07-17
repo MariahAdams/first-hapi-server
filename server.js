@@ -7,25 +7,24 @@ const server = Hapi.server({
 
 server.route({
     method: 'GET',
-    path: '/hello',
+    path: '/{name}',
     handler: function(request, h) {
 
-        return 'Hello World';
+        return 'Hello, ' + encodeURIComponent(request.params.name) + '!';
     }
 });
 
-//start server
-async function start() {
+const init = async () => {
 
-    try {
-        await server.start();
-    }
-    catch(err) {
-        console.log(err);
-        process.exit(1);
-    }
+    await server.start();
+    console.log(`Server running at: ${server.info.uri}`);
+};
 
-    console.log('Server running at:', server.info.uri);
-}
+process.on('unhandledRejection', (err) => {
 
-start();
+    console.log(err);
+    process.exit(1);
+});
+
+init();
+
