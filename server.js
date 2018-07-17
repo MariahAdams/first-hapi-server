@@ -10,12 +10,13 @@ const server = Hapi.server({
 
 server.route({
     method: 'GET',
-    path: '/{name}',
+    path: '/{user?}',
     handler: function(request, h) {
 
         //Note that we URI encode the name parameter, 
         //this is to prevent content injection attacks. 
-        return 'Hello, ' + encodeURIComponent(request.params.name) + '!';
+        const user = request.params.user ? encodeURIComponent(request.params.name) : 'Stranger';
+        return `Hello ${user}!`; 
     }
 });
 
