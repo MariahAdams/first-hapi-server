@@ -1,7 +1,11 @@
-require('dotenv').config();
-require('./lib/mongodb');
-const app = require('./lib/app');
 const Hapi = require('hapi');
+const Mongoose = require('mongoose');
+const Game = require('./lib/models/game');
+
+Mongoose.connect('mongodb://localhost:27017/switch');
+Mongoose.connection.once('open', () => {
+    console.log('connected to database');
+});
 
 const server = Hapi.server({
     host: 'localhost',
@@ -20,9 +24,28 @@ server.route([
             return `Hello ${user}!`; 
         }
     },
+    {
+        method: 'GET',
+        path: '/api/games',
+        handler: (req, reply) => {
+            return Game.find();
+        }
+    },
+    {
+        method: 'POST',
+        path: '/api/games',
+        handler: (req, reply) => {
+            const { name } = req.payload;
+            const game = new Game({
+                name
+            });
+
+            return game.save();
+        }
+    }
 ]);
 
-const init = async () => {
+const init = async() => {
 
     await server.start();
     console.log(`Server running at: ${server.info.uri}`);
@@ -35,4 +58,6 @@ process.on('unhandledRejection', (err) => {
 });
 
 init();
+
+
 

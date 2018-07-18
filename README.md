@@ -15,7 +15,7 @@ Requires:
 
 ### How to use API
 * Connect to server with `npm run start`.
-* Enter `http://localhost:3000` in your browser.
+* Enter `http://localhost:8080` in your browser.
 
 More to come...
 
@@ -24,3 +24,6 @@ More to come...
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgment 
+Followed tutorials from [Hapi docs](https://hapijs.com/tutorials) & [https://medium.freecodecamp.org/how-to-setup-a-powerful-api-with-nodejs-graphql-mongodb-hapi-and-swagger-e251ac189649](https://medium.freecodecamp.org/how-to-setup-a-powerful-api-with-nodejs-graphql-mongodb-hapi-and-swagger-e251ac189649)
