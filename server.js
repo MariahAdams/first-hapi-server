@@ -16,7 +16,7 @@ server.route([
     {
         method: 'GET',
         path: '/api/{user?}',
-        handler: function(request, h) {
+        handler: function(request) {
     
             //Note that we URI encode the name parameter, 
             //this is to prevent content injection attacks. 
@@ -27,14 +27,14 @@ server.route([
     {
         method: 'GET',
         path: '/api/games',
-        handler: (req, reply) => {
+        handler: () => {
             return Game.find();
         }
     },
     {
         method: 'POST',
         path: '/api/games',
-        handler: (req, reply) => {
+        handler: (req) => {
             const { name, url, developer, year } = req.payload;
             const game = new Game({
                 name,
@@ -61,6 +61,8 @@ process.on('unhandledRejection', (err) => {
 });
 
 init();
+
+module.exports = server;
 
 
 
