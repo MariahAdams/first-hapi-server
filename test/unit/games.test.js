@@ -1,20 +1,23 @@
 const chai = require('chai');
 const { assert } = chai;
-const YourModel = require('../../lib/models/your-model');
+const Game = require('../../lib/models/game');
 // const { getErrors } = require('./helpers');
 
-describe('YourModel model', () => {
+describe('Game model', () => {
 
     it('validates good model', () => {
         const data = {
-            // example full, good data
+            name: 'Breath of the Wild', 
+            url: 'https://www.zelda.com/breath-of-the-wild/',
+            developer: 'Nintendo',
+            year: 2017
         };
-        const yourModel = new YourModel(data);
+        const game = new Game(data);
 
-        const json = yourModel.toJSON();
+        const json = game.toJSON();
         delete json._id;
         assert.deepEqual(json, data);
-        assert.isUndefined(yourModel.validateSync());
+        assert.isUndefined(game.validateSync());
     });
 
 });
