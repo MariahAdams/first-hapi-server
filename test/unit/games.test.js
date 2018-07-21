@@ -29,4 +29,16 @@ describe('Game model', () => {
         assert.equal(errors.year.kind, 'required');
     });
 
+    it('tests for valid year', () => {
+        const game = new Game({
+            name: 'Mario Kart', 
+            developer: 'Nintendo',
+            year: 201
+        });
+        const errors = getErrors(game.validateSync(), 1);
+
+        assert.equal(errors.year.kind, 'user defined');
+        assert.equal(errors.year.message, 'Valid year required');
+    });
+
 });
