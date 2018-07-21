@@ -48,9 +48,19 @@ server.route([
     },
     {
         method: 'PUT',
-        path: '/api/games',
+        path: '/api/games/{id}',
         handler: (req, reply) => {
-            reply('Put game id: ' + req.params.id);
+            const { name, url, developer, year } = req.payload;
+            const game = new Game({
+                name,
+                url,
+                developer,
+                year
+            });
+            
+            Game.findByIdAndUpdate({ _id: req.params.id }, req.payload);
+
+            return reply.response(game);
         }
     }
 ]);
