@@ -58,7 +58,7 @@ server.route([
                 year
             });
             
-            Game.findByIdAndUpdate({ _id: req.params.id }, req.payload);
+            Game.findByIdAndUpdate({ _id: req.params.id }, req.payload, { new: true });
 
             return reply.response(game);
         }

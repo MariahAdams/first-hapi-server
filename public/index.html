@@ -7,6 +7,20 @@
     <title>First Hapi Server</title>
 </head>
 <body>
-    <h1>Some Document</h1>
+    <h1>Welcome to my Nintendo Switch Game Page!</h1>
+    <h5>Click the link below to get started:</h5>
+    <p id="games"><a href="http://localhost:8080/api/games">Check out pies</a></p>
+    <script>
+        fetch('./api/games')
+            .then(response => response.json())
+            .then(games => {
+                const ul = document.getElementById('games');
+                games.forEach(game => {
+                    const li = document.createElement('li');
+                    li.innerText = `${game.name}`;
+                    ul.appendChild(li);
+                })
+            })
+    </script>
 </body>
 </html>

@@ -14,16 +14,20 @@ Requires:
 * To test, run `npm test`. 
 
 ### How to use API
+* Create your own .env files with the .env.example files provided in the root of the project and the test folder. Enter the correct MongoDB URI. Default port is set to 8080, you may update it to your port of choice.
 * Connect to server with `npm run start`.
 * Enter `http://localhost:8080` in your browser.
+* This API saves one resource to MongoDB: Games. To the our data, click the links provided on the splash page.
 
-More to come...
+The following methods are currently available for the paths listed:
+
+Method | Path
+---|---
+`GET` |     `/<resources>`
+`POST` |    `/<resources>`
 
 ## Contributor
 [Mariah Adams](https://github.com/MariahAdams)
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgment 
-Followed tutorials from [Hapi docs](https://hapijs.com/tutorials) & [https://medium.freecodecamp.org/how-to-setup-a-powerful-api-with-nodejs-graphql-mongodb-hapi-and-swagger-e251ac189649](https://medium.freecodecamp.org/how-to-setup-a-powerful-api-with-nodejs-graphql-mongodb-hapi-and-swagger-e251ac189649)
