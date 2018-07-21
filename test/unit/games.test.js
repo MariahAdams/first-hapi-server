@@ -1,7 +1,7 @@
 const chai = require('chai');
 const { assert } = chai;
 const Game = require('../../lib/models/game');
-// const { getErrors } = require('./helpers');
+const { getErrors } = require('./helpers');
 
 describe('Game model', () => {
 
@@ -18,6 +18,15 @@ describe('Game model', () => {
         delete json._id;
         assert.deepEqual(json, data);
         assert.isUndefined(game.validateSync());
+    });
+
+    it('validates required fields', () => {
+        const game = new Game({});
+        const errors = getErrors(game.validateSync(), 3);
+
+        assert.equal(errors.name.kind, 'required');
+        assert.equal(errors.developer.kind, 'required');
+        assert.equal(errors.year.kind, 'required');
     });
 
 });
