@@ -1,6 +1,6 @@
 const assert = require('chai').assert;
 const server = require('../server');
-const request = require('./request');
+const request = require('http');
 
 server.register([
     { register: require('inject-then') }

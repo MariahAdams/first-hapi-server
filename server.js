@@ -34,7 +34,7 @@ server.route([
     {
         method: 'POST',
         path: '/api/games',
-        handler: (req) => {
+        handler: (req, reply) => {
             const { name, url, developer, year } = req.payload;
             const game = new Game({
                 name,
@@ -43,7 +43,14 @@ server.route([
                 year
             });
 
-            return game.save();
+            return reply.response(game).code(200);
+        }
+    },
+    {
+        method: 'PUT',
+        path: '/api/games',
+        handler: (req, reply) => {
+            reply('Put game id: ' + req.params.id);
         }
     }
 ]);
