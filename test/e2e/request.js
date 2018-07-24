@@ -3,8 +3,9 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
-const serverjs = require('../../server');
-const server = createServer(serverjs);
+// const serverjs = require('../../server');
+const app = require('../lib/app');
+const server = createServer(app);
 const request = chai.request(server).keepOpen();
 
 after(done => server.close(done));
